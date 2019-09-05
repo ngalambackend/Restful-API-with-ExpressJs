@@ -7,4 +7,9 @@ router.post(
 	ArticlesController.createArticle
 );
 
+router.get(
+	'/',
+	ArticlesController.getArticlesWithCategories
+);
+
 module.exports = router;
