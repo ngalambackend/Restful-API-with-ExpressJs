@@ -133,5 +133,81 @@ module.exports = {
 				},
 			});
         }
-    }
+    },
+
+    updateArticle: async function(req, res){
+        /* PARAMS */
+		let id = req.params.id;
+
+		/* POST BODY */
+        let categoryid = req.body.categoryid;
+        let title = req.body.title;
+        let body = req.body.body;
+
+		/* PARAMETER ZSequelize  */
+		/* PARAMETER ARTICLES*/
+        let articleValue = {
+            categoryid: categoryid,
+            title: title,
+            body: body
+        };
+
+		let articleWhere = {
+			id: id
+		};
+
+		/* UPDATE ZSequelize */
+		let articleResult = await ZSequelize.updateValues(articleValue, articleWhere, "ArticlesModel");
+	
+		 /* FETCTH RESULT & CONDITION & RESPONSE */
+		if (articleResult.result) {
+			return res.status(200).json({
+				result : articleResult.result,
+				data: {
+					code: 200,
+					message: "Success modify data."
+				}
+			});
+		}else{
+			return res.status(404).json({
+				result : articleResult.result,
+				data: {
+					code: 404,
+					message: "Voucher does not exist."
+				},
+			});
+		}
+    },
+
+    deleteArticle: async function(req, res) {
+		/* PARAMS */
+		let id = req.params.id;
+		
+		/* PARAMETER ZSequelize VOUCHER  */
+		let articleWhere = {
+			id: id
+		};
+
+		/* DELETE ZSequelize VOUCHER */
+		let articleResult = await ZSequelize.destroyValues(articleWhere, "ArticlesModel");
+
+		/* FETCTH RESULT & CONDITION & RESPONSE */
+		if (articleResult.result) {
+			return res.status(200).json({
+				result : articleResult.result,
+				data: {
+					code: 200,
+					message: "Success delete data."
+				}
+			});
+		}else{
+			return res.status(404).json({
+				result : articleResult.result,
+				data:{
+					code: 404,
+					message: "Data does not exist."
+				},
+			});
+		}
+	}
 }

@@ -12,4 +12,13 @@ router.get(
 	ArticlesController.getArticlesWithCategories
 );
 
+router.put(
+	'/:id',
+	ArticlesController.updateArticle
+);
+
+router.delete(
+	'/:id',
+	ArticlesController.deleteArticle
+);
 module.exports = router;
