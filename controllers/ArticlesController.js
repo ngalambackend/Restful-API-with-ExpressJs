@@ -183,12 +183,12 @@ module.exports = {
 		/* PARAMS */
 		let id = req.params.id;
 		
-		/* PARAMETER ZSequelize VOUCHER  */
+		/* PARAMETER ZSequelize  */
 		let articleWhere = {
 			id: id
 		};
 
-		/* DELETE ZSequelize VOUCHER */
+		/* DELETE ZSequelize */
 		let articleResult = await ZSequelize.destroyValues(articleWhere, "ArticlesModel");
 
 		/* FETCTH RESULT & CONDITION & RESPONSE */
