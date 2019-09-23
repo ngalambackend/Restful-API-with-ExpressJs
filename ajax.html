@@ -6,7 +6,7 @@
 $(document).ready(function(){
   $("button").click(function(){
     $.ajax({url: "http://localhost:3003/articles/", success: function(result){
-      $("#div1").html(result);
+      $("#div1").html(JSON.stringify(result));
     }});
   });
 });
